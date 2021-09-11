@@ -1,0 +1,35 @@
+
+mbusinessLogic.BLFacadeImplementation#getQuestionMultiplerFromNumber(Ljava/lang/Integer;)Ljava/util/ArrayList;}
+qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.java· ·(:"startingBlock*ê
+startingBlock}
+qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.java·: ·(J¬
+ø
+}
+qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.java‡ ‡(
+%0"
+__annotate*
+	WebMethod*
+
+numerojava.lang.Integerµ
+≤
+}
+qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.java·C ·(I
+numerojava.lang.Integer"__annotation*
+
+%0*
+1*ﬂ
+1}
+qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.java‚ ‚(≥
+∞
+}
+qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.java„ „(U!
+
+multiplersjava.util.ArrayList"__id*
+"""§
+}
+qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.javaÂ Â(#
+!
+
+multiplersjava.util.ArrayList:
+numerojava.lang.IntegerB(&
+$businessLogic.BLFacadeImplementation

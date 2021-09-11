@@ -1,0 +1,7 @@
+organization=luciechevarria3
+projectKey=BetsLuciano
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.23159
+dashboardUrl=https://sonarcloud.io/dashboard?id=BetsLuciano
+ceTaskId=AXvVgMwbOenrA8_EeuRK
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXvVgMwbOenrA8_EeuRK

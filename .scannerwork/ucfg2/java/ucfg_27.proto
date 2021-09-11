@@ -1,0 +1,59 @@
+
+,domain.Question#toString()Ljava/lang/String;h
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Question.javaÂ Â("1*¤
+1h
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Question.javaÃ	 Ã(µ
+²
+h
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Question.javaÃ	 Ã(
+%0java.lang.Integer"__id*'*%
+domain.Question"
+questionNumber±
+®
+h
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Question.javaÃ	 Ã(
+%1java.lang.String"__concat*
+
+%0java.lang.Integer*
+;®
+«
+h
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Question.javaÃ Ã($
+%2java.lang.String"__id*!*
+domain.Question"
+
+questionÃ
+À
+h
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Question.javaÃ	 Ã($
+%3java.lang.String"__concat*
+
+%1java.lang.String*
+
+%2java.lang.String°
+­
+h
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Question.javaÃ	 Ã((
+%4java.lang.String"__concat*
+
+%3java.lang.String*
+;Ñ
+Î
+h
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Question.javaÃ) Ã(C
+%5java.lang.String"-java.lang.Float#toString(F)Ljava/lang/String;*"
+java.lang.Float*
+""Ã
+À
+h
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Question.javaÃ	 Ã(C
+%6java.lang.String"__concat*
+
+%4java.lang.String*
+
+%5java.lang.String"„
+h
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Question.javaÃ Ã(D
+
+%6java.lang.StringB
+domain.Question

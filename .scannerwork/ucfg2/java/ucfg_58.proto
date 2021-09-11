@@ -1,0 +1,92 @@
+
+(domain.Event#equals(Ljava/lang/Object;)Zc
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.java{ {("startingBlock*€
+2e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÑ
+ Ñ("o
+e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÑ Ñ(
+""*¸
+3e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÇ Ç(¢
+ü
+e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÇ Ç(
+otherdomain.Event"__id*
+
+objjava.lang.Object¨
+©
+e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÉ É(
+%2java.lang.Integer"__id*!*
+domain.Event"
+eventNumber≥
+∞
+e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÉ É(&
+%3java.lang.Integer"__id*(*&
+
+otherdomain.Event"
+eventNumber*
+2
+1*…
+startingBlockc
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.java{ {("≠
+™
+c
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaz z(
+
+%4"
+__annotate*
+java.lang.Override*
+
+objjava.lang.Objectó
+î
+c
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.java{ {(!
+objjava.lang.Object"__annotation*
+
+%4*	
+5
+6
+8*€
+4e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÅ
+ Å("o
+e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÅ Å(
+""*õ
+5e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÄ Ä(Õ 
+e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÄ Ä(
+%0java.lang.Class",java.lang.Object#getClass()Ljava/lang/Class;*
+domain.Event2
+getClass()÷”
+e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÄ Ä("
+%1java.lang.Class",java.lang.Object#getClass()Ljava/lang/Class;*
+
+objjava.lang.Object2
+getClass()*
+3
+4*◊
+6c
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.java
+ ("m
+c
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.java (
+""*◊
+8c
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.java}
+ }("m
+c
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.java} }(
+""*€
+1e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÖ	 Ö("o
+e
+YC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Event.javaÖ Ö(
+"":
+objjava.lang.ObjectB
+domain.Event
