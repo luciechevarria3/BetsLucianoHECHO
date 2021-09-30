@@ -320,18 +320,22 @@ public class DataAccess  {
         return accounts;
     }
 	
-	public boolean tryToLogin(String pUsername, String pPassword) { 
-		Account obj = db.find(Account.class, pUsername); 
-		if (obj == null) {
-			System.out.println("Account doesn't exist.");
-			return false;
-		} else {
-			if (obj.getPassword().equals(pPassword)) 
-				return true;
-		}
-		System.out.println("Wrong Password.");
-		return false;
-	}
+    public boolean tryToLogin(String pUsername, String pPassword) throws RuntimeException { 
+    	if(pUsername.equals("") || pPassword.equals("")) {
+    		throw new RuntimeException("El nombre o contraseña están vacios");
+    	}
+        Account obj = db.find(Account.class, pUsername); 
+        if (obj == null) {
+            throw new  RuntimeException("No se ha encontrado usuario con dichas credenciales.");
+        } else {
+            if (obj.getPassword().equals(pPassword)) {
+                return true;
+            }
+            else {
+            	return false;
+            }
+        }
+    }
 	
 	public boolean isAdministrator(String pUsername) {
 		Account obj = db.find(Account.class, pUsername); 
