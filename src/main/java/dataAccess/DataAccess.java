@@ -332,7 +332,7 @@ public class DataAccess  {
                 return true;
             }
             else {
-            	return false;
+            	throw new RuntimeException("La contraseña ingresada no es correcta");
             }
         }
     }
