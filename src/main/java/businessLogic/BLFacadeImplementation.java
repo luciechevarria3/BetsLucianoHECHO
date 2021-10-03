@@ -150,6 +150,9 @@ public class BLFacadeImplementation  implements BLFacade {
 
     
     /**
+     * Method to try to loging to the application.
+     * @param pUsername The inserted username
+     * @param pPassword The inserted password
      * @return True if the user logged successfully else not
      */
     @WebMethod

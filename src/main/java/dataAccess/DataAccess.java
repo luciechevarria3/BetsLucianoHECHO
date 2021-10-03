@@ -336,6 +336,13 @@ public class DataAccess  {
 		return accounts;
 	}
 
+	/**
+	 * Method to try to login to the application. 
+	 * @param pUsername The inserted username
+	 * @param pPassword The inserted password
+	 * @return boolean True if the login was successful. False if the login was unsuccessful
+	 * @throws RuntimeException If the string parameters are blank ("")
+	 */
 	public boolean tryToLogin(String pUsername, String pPassword) throws RuntimeException { 
 		if(pUsername.equals("") || pPassword.equals("")) {									/*1*/
 			throw new RuntimeException("El nombre o contraseña están vacios");				/*2*/
