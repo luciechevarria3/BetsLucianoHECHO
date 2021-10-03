@@ -47,7 +47,25 @@ public class DataAccess  {
 
 		open(initializeMode);
 
+//		// CAMBIO PARA QUE FUNCIONEN LOS TESTS SOBRE DATAACCESS
+		if(initializeMode) {
+			db.getTransaction().begin();
+			try {
+				Account user1 = new Account("Samu11", "123456X", false, "bla", "bla", "bla", "bla");
+				db.persist(user1);
+				Account user2 = new Account("Ane20", "202020", false, "bla", "bla", "bla", "bla");
+				db.persist(user2);
+				System.out.println("Se han creado dos nuevos usuarios");
+				db.getTransaction().commit();
+				System.out.println("Db initialized");
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+		// HASTA AQUI JEJEJ
 	}
+
 
 	public DataAccess()  {	
 		this(false);
@@ -58,109 +76,108 @@ public class DataAccess  {
 	 * This method is invoked by the business logic (constructor of BLFacadeImplementation) when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
 	public void initializeDB(){
-
 		db.getTransaction().begin();
 		try {
-
-
-			Calendar today = Calendar.getInstance();
-
-			int month=today.get(Calendar.MONTH);
-			month+=1;
-			int year=today.get(Calendar.YEAR);
-			if (month==12) { month=0; year+=1;}  
-
-			Event ev1=new Event(1, "Atlético-Athletic", UtilDate.newDate(year,month,17));
-			Event ev2=new Event(2, "Eibar-Barcelona", UtilDate.newDate(year,month,17));
-			Event ev3=new Event(3, "Getafe-Celta", UtilDate.newDate(year,month,17));
-			Event ev4=new Event(4, "Alavés-Deportivo", UtilDate.newDate(year,month,17));
-			Event ev5=new Event(5, "Español-Villareal", UtilDate.newDate(year,month,17));
-			Event ev6=new Event(6, "Las Palmas-Sevilla", UtilDate.newDate(year,month,17));
-			Event ev7=new Event(7, "Malaga-Valencia", UtilDate.newDate(year,month,17));
-			Event ev8=new Event(8, "Girona-Leganés", UtilDate.newDate(year,month,17));
-			Event ev9=new Event(9, "Real Sociedad-Levante", UtilDate.newDate(year,month,17));
-			Event ev10=new Event(10, "Betis-Real Madrid", UtilDate.newDate(year,month,17));
-
-			Event ev11=new Event(11, "Atletico-Athletic", UtilDate.newDate(year,month,1));
-			Event ev12=new Event(12, "Eibar-Barcelona", UtilDate.newDate(year,month,1));
-			Event ev13=new Event(13, "Getafe-Celta", UtilDate.newDate(year,month,1));
-			Event ev14=new Event(14, "Alavés-Deportivo", UtilDate.newDate(year,month,1));
-			Event ev15=new Event(15, "Español-Villareal", UtilDate.newDate(year,month,1));
-			Event ev16=new Event(16, "Las Palmas-Sevilla", UtilDate.newDate(year,month,1));
-
-
-			Event ev17=new Event(17, "Málaga-Valencia", UtilDate.newDate(year,month+1,28));
-			Event ev18=new Event(18, "Girona-Leganés", UtilDate.newDate(year,month+1,28));
-			Event ev19=new Event(19, "Real Sociedad-Levante", UtilDate.newDate(year,month+1,28));
-			Event ev20=new Event(20, "Betis-Real Madrid", UtilDate.newDate(year,month+1,28));
-			
-
-			Question q1;
-			Question q2;
-			Question q3;
-			Question q4;
-			Question q5;
-			Question q6;
-
-		if (Locale.getDefault().equals(new Locale("es"))) {
-				q1=ev1.addQuestion("¿Quién ganará el partido?",1,1,"1.0,2.0,3.0");
-				q2=ev1.addQuestion("¿Quién meterá el primer gol?",2,2,"1.0,2.0,3.0");
-				q3=ev11.addQuestion("¿Quién ganará el partido?",1,1,"1.0,2.0,3.0");
-				q4=ev11.addQuestion("¿Cuántos goles se marcarán?",2,3,"1.0,2.0,3.0");
-				q5=ev17.addQuestion("¿Quién ganará el partido?",1,1,"1.0,2.0,3.0");
-				q6=ev17.addQuestion("¿Habrá goles en la primera parte?",2,2,"1.0,2.0,3.0");
-			}
-		else if (Locale.getDefault().equals(new Locale("en"))) {
-				q1=ev1.addQuestion("Who will win the match?",1, 1,"1.0,2.0,3.0");
-				q2=ev1.addQuestion("Who will score first?",2, 2,"1.0,2.0,3.0");
-				q3=ev11.addQuestion("Who will win the match?",1, 1,"1.0,2.0,3.0");
-				q4=ev11.addQuestion("How many goals will be scored in the match?",2, 3,"1.0,2.0,3.0");
-				q5=ev17.addQuestion("Who will win the match?",1, 1,"1.0,2.0,3.0");
-				q6=ev17.addQuestion("Will there be goals in the first half?",2, 2,"1.0,2.0,3.0");
-				
-			}			
-			else {
-				q1=ev1.addQuestion("Zeinek irabaziko du partidua?",1,1,"1.0,2.0,3.0");
-				q2=ev1.addQuestion("Zeinek sartuko du lehenengo gola?",2,2,"1.0,2.0,3.0");
-				q3=ev11.addQuestion("Zeinek irabaziko du partidua?",1,1,"1.0,2.0,3.0");
-				q4=ev11.addQuestion("Zenbat gol sartuko dira?",2,3,"1.0,2.0,3.0");
-				q5=ev17.addQuestion("Zeinek irabaziko du partidua?",1,1,"1.0,2.0,3.0");
-				q6=ev17.addQuestion("Golak sartuko dira lehenengo zatian?",2,2,"1.0,2.0,3.0");
-
-			}
-
-			db.persist(new Account("admin", "admin", true,"admin",null,null,null));
-			db.persist(new Account("user", "user", false,"user",null,null,null));
-			
-			db.persist(q1);
-			db.persist(q2);
-			db.persist(q3);
-			db.persist(q4);
-			db.persist(q5);
-			db.persist(q6);
-
-
-			db.persist(ev1);
-			db.persist(ev2);
-			db.persist(ev3);
-			db.persist(ev4);
-			db.persist(ev5);
-			db.persist(ev6);
-			db.persist(ev7);
-			db.persist(ev8);
-			db.persist(ev9);
-			db.persist(ev10);
-			db.persist(ev11);
-			db.persist(ev12);
-			db.persist(ev13);
-			db.persist(ev14);
-			db.persist(ev15);
-			db.persist(ev16);
-			db.persist(ev17);
-			db.persist(ev18);
-			db.persist(ev19);
-			db.persist(ev20);
-			
+//			Account user = new Account("Samu11", "123456X", false, "bla", "bla", "bla", "bla");
+//			db.persist(user);
+//			System.out.println("Se ha creado un nuevo usuario");
+			//			Calendar today = Calendar.getInstance();
+			//
+			//			int month=today.get(Calendar.MONTH);
+			//			month+=1;
+			//			int year=today.get(Calendar.YEAR);
+			//			if (month==12) { month=0; year+=1;}  
+			//
+			//			Event ev1=new Event(1, "Atlético-Athletic", UtilDate.newDate(year,month,17));
+			//			Event ev2=new Event(2, "Eibar-Barcelona", UtilDate.newDate(year,month,17));
+			//			Event ev3=new Event(3, "Getafe-Celta", UtilDate.newDate(year,month,17));
+			//			Event ev4=new Event(4, "Alavés-Deportivo", UtilDate.newDate(year,month,17));
+			//			Event ev5=new Event(5, "Español-Villareal", UtilDate.newDate(year,month,17));
+			//			Event ev6=new Event(6, "Las Palmas-Sevilla", UtilDate.newDate(year,month,17));
+			//			Event ev7=new Event(7, "Malaga-Valencia", UtilDate.newDate(year,month,17));
+			//			Event ev8=new Event(8, "Girona-Leganés", UtilDate.newDate(year,month,17));
+			//			Event ev9=new Event(9, "Real Sociedad-Levante", UtilDate.newDate(year,month,17));
+			//			Event ev10=new Event(10, "Betis-Real Madrid", UtilDate.newDate(year,month,17));
+			//
+			//			Event ev11=new Event(11, "Atletico-Athletic", UtilDate.newDate(year,month,1));
+			//			Event ev12=new Event(12, "Eibar-Barcelona", UtilDate.newDate(year,month,1));
+			//			Event ev13=new Event(13, "Getafe-Celta", UtilDate.newDate(year,month,1));
+			//			Event ev14=new Event(14, "Alavés-Deportivo", UtilDate.newDate(year,month,1));
+			//			Event ev15=new Event(15, "Español-Villareal", UtilDate.newDate(year,month,1));
+			//			Event ev16=new Event(16, "Las Palmas-Sevilla", UtilDate.newDate(year,month,1));
+			//
+			//
+			//			Event ev17=new Event(17, "Málaga-Valencia", UtilDate.newDate(year,month+1,28));
+			//			Event ev18=new Event(18, "Girona-Leganés", UtilDate.newDate(year,month+1,28));
+			//			Event ev19=new Event(19, "Real Sociedad-Levante", UtilDate.newDate(year,month+1,28));
+			//			Event ev20=new Event(20, "Betis-Real Madrid", UtilDate.newDate(year,month+1,28));
+			//			
+			//
+			//			Question q1;
+			//			Question q2;
+			//			Question q3;
+			//			Question q4;
+			//			Question q5;
+			//			Question q6;
+			//
+			//		if (Locale.getDefault().equals(new Locale("es"))) {
+			//				q1=ev1.addQuestion("¿Quién ganará el partido?",1,1,"1.0,2.0,3.0");
+			//				q2=ev1.addQuestion("¿Quién meterá el primer gol?",2,2,"1.0,2.0,3.0");
+			//				q3=ev11.addQuestion("¿Quién ganará el partido?",1,1,"1.0,2.0,3.0");
+			//				q4=ev11.addQuestion("¿Cuántos goles se marcarán?",2,3,"1.0,2.0,3.0");
+			//				q5=ev17.addQuestion("¿Quién ganará el partido?",1,1,"1.0,2.0,3.0");
+			//				q6=ev17.addQuestion("¿Habrá goles en la primera parte?",2,2,"1.0,2.0,3.0");
+			//			}
+			//		else if (Locale.getDefault().equals(new Locale("en"))) {
+			//				q1=ev1.addQuestion("Who will win the match?",1, 1,"1.0,2.0,3.0");
+			//				q2=ev1.addQuestion("Who will score first?",2, 2,"1.0,2.0,3.0");
+			//				q3=ev11.addQuestion("Who will win the match?",1, 1,"1.0,2.0,3.0");
+			//				q4=ev11.addQuestion("How many goals will be scored in the match?",2, 3,"1.0,2.0,3.0");
+			//				q5=ev17.addQuestion("Who will win the match?",1, 1,"1.0,2.0,3.0");
+			//				q6=ev17.addQuestion("Will there be goals in the first half?",2, 2,"1.0,2.0,3.0");
+			//				
+			//			}			
+			//			else {
+			//				q1=ev1.addQuestion("Zeinek irabaziko du partidua?",1,1,"1.0,2.0,3.0");
+			//				q2=ev1.addQuestion("Zeinek sartuko du lehenengo gola?",2,2,"1.0,2.0,3.0");
+			//				q3=ev11.addQuestion("Zeinek irabaziko du partidua?",1,1,"1.0,2.0,3.0");
+			//				q4=ev11.addQuestion("Zenbat gol sartuko dira?",2,3,"1.0,2.0,3.0");
+			//				q5=ev17.addQuestion("Zeinek irabaziko du partidua?",1,1,"1.0,2.0,3.0");
+			//				q6=ev17.addQuestion("Golak sartuko dira lehenengo zatian?",2,2,"1.0,2.0,3.0");
+			//
+			//			}
+			//
+			//			db.persist(new Account("admin", "admin", true,"admin",null,null,null));
+			//			db.persist(new Account("user", "user", false,"user",null,null,null));
+			//			
+			//			db.persist(q1);
+			//			db.persist(q2);
+			//			db.persist(q3);
+			//			db.persist(q4);
+			//			db.persist(q5);
+			//			db.persist(q6);
+			//
+			//
+			//			db.persist(ev1);
+			//			db.persist(ev2);
+			//			db.persist(ev3);
+			//			db.persist(ev4);
+			//			db.persist(ev5);
+			//			db.persist(ev6);
+			//			db.persist(ev7);
+			//			db.persist(ev8);
+			//			db.persist(ev9);
+			//			db.persist(ev10);
+			//			db.persist(ev11);
+			//			db.persist(ev12);
+			//			db.persist(ev13);
+			//			db.persist(ev14);
+			//			db.persist(ev15);
+			//			db.persist(ev16);
+			//			db.persist(ev17);
+			//			db.persist(ev18);
+			//			db.persist(ev19);
+			//			db.persist(ev20);
 
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
@@ -193,7 +210,6 @@ public class DataAccess  {
 		// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 		db.getTransaction().commit();
 		return q;
-
 	}
 
 	/**
@@ -274,21 +290,21 @@ public class DataAccess  {
 	public void close(){
 		if (db.isOpen())
 			db.close();
-		
+
 		System.out.println("DataBase closed");
 	}
-	
+
 	public void storeAccount(Account user) {
-        db.getTransaction().begin();
-        db.persist(user);
-        db.getTransaction().commit();
+		db.getTransaction().begin();
+		db.persist(user);
+		db.getTransaction().commit();
 	}
-    
+
 	public boolean isUsernameAvailable(Account acc) {
 
 		Account cuenta = db.find(Account.class, acc.getUserName());
 
-		
+
 		if (cuenta != null) {
 			System.out.println("*** " + acc.getUserName() + " *** username is already taken. Code 4.");
 			return false;
@@ -299,44 +315,47 @@ public class DataAccess  {
 			System.out.println("There are no account(s) with that username.");
 			System.out.println("*** " + acc.getUserName() + " *** username is available.");
 			return true;
-			
+
 		}
-		
+
 	}
-	
-	 public boolean isEmailAvailable(String pCorreo) {
-		   ArrayList<Account>acc=(ArrayList<Account>) getAllUsers();
-		   for(Account a:acc) {
-			   if(a.getUserEmail().equals(pCorreo)) {
-				   return false;
-			   }
-		   }
-		   return true;
-	 }
-	
-    public List<Account> getAllUsers() {
-    	TypedQuery<Account> query = db.createQuery("SELECT a FROM Account a",Account.class);
-        List<Account> accounts = query.getResultList();
-        return accounts;
-    }
-	
-    public boolean tryToLogin(String pUsername, String pPassword) throws RuntimeException { 
-    	if(pUsername.equals("") || pPassword.equals("")) {
-    		throw new RuntimeException("El nombre o contrase�a est�n vacios");
-    	}
-        Account obj = db.find(Account.class, pUsername); 
-        if (obj == null) {
-            throw new  RuntimeException("No se ha encontrado usuario con dichas credenciales.");
-        } else {
-            if (obj.getPassword().equals(pPassword)) {
-                return true;
-            }
-            else {
-            	throw new RuntimeException("La contrase�a ingresada no es correcta");
-            }
-        }
-    }
-	
+
+	public boolean isEmailAvailable(String pCorreo) {
+		ArrayList<Account>acc=(ArrayList<Account>) getAllUsers();
+		for(Account a:acc) {
+			if(a.getUserEmail().equals(pCorreo)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public List<Account> getAllUsers() {
+		TypedQuery<Account> query = db.createQuery("SELECT a FROM Account a",Account.class);
+		List<Account> accounts = query.getResultList();
+		return accounts;
+	}
+
+	public boolean tryToLogin(String pUsername, String pPassword) throws RuntimeException { 
+		if(pUsername.equals("") || pPassword.equals("")) {									/*1*/
+			throw new RuntimeException("El nombre o contrase�a est�n vacios");				/*2*/
+		}
+		Account obj = db.find(Account.class, pUsername); 									/*3*/
+		if (obj == null) {																	/*4*/
+			System.out.println("No se ha encontrado usuario con dichas credenciales.");		/*5*/
+			return false;																	/*6*/
+		}
+		else {
+			if (obj.getPassword().equals(pPassword)) {										/*7*/
+				return true;																/*8*/
+			}
+			else {
+				System.out.println("La contrase�a ingresada no es correcta");				/*9*/
+				return false;																/*10*/
+			}
+		}
+	}
+
 	public boolean isAdministrator(String pUsername) {
 		Account obj = db.find(Account.class, pUsername); 
 		if (obj == null) {
@@ -348,19 +367,19 @@ public class DataAccess  {
 		}
 		return false;
 	}
-	
+
 	public List<Event> LastEventNumber() {
-        TypedQuery<Event> query = db.createQuery("SELECT e FROM Event e",Event.class);
-        List<Event> events = query.getResultList();
-        return events;
-    }
-	
+		TypedQuery<Event> query = db.createQuery("SELECT e FROM Event e",Event.class);
+		List<Event> events = query.getResultList();
+		return events;
+	}
+
 	public void storeEvent(Event evento) {
 		db.getTransaction().begin();
 		db.persist(evento);
 		db.getTransaction().commit();
 	}
-	
+
 	public Question getQuestionFromNumber(Integer numero) {
 		TypedQuery<Question> query = db.createQuery("SELECT p FROM Question p WHERE p.questionNumber= "+numero+"", Question.class);
 		List<Question> questions = query.getResultList();
@@ -371,39 +390,39 @@ public class DataAccess  {
 		else {
 			return questions.get(0);
 		}
-		
+
 	}
-	
+
 	public List<Forecast> getAllForecasts() {
-    	TypedQuery<Forecast> query = db.createQuery("SELECT f FROM Forecast f",Forecast.class);
-        List<Forecast> forecasts = query.getResultList();
-        return forecasts;
-    }
-	
-		
+		TypedQuery<Forecast> query = db.createQuery("SELECT f FROM Forecast f",Forecast.class);
+		List<Forecast> forecasts = query.getResultList();
+		return forecasts;
+	}
+
+
 	public List<Forecast> getuserForecasts(String user) {
-		
+
 		Account u =getUser(user);
-		
+
 		List<Forecast> forecasts = u.getAllUserForecast();
-		
+
 		if(forecasts.size()<1) {
 			System.out.println(errorListaNula);
 			return null;
 		}
 		else {
 			return forecasts;
-			}			
-				
+		}			
+
 	}
-	
-	
-	
+
+
+
 	public List<Forecast> getForecastsOfQuestion(Question question) {
-		
+
 		ArrayList<Forecast> forecasts = (ArrayList<Forecast>) getAllForecasts();
 		List<Forecast> forecastsOfQuestion=new ArrayList<Forecast>();
-		
+
 		if(forecasts.size()<1) {
 			System.out.println(errorListaNula);
 			return null;
@@ -416,10 +435,9 @@ public class DataAccess  {
 			}			
 			return forecastsOfQuestion;
 		}
-		
+
 	}
-	
-	
+
 	public ArrayList<Float> getQuestionMultiplersFromNumber(Integer numero) {
 		TypedQuery<Question> query = db.createQuery("SELECT p FROM Question p WHERE p.questionNumber= "+numero+"", Question.class);
 		List<Question> questions = query.getResultList();
@@ -433,16 +451,15 @@ public class DataAccess  {
 			}
 			return f;
 		}
-		
 	}
-	
+
 	public void setQuestionResult(Integer numero, String result) {
 		db.getTransaction().begin();
 		Question q= db.find(Question.class, numero);
 		q.setResult(result);		
 		db.getTransaction().commit();
 	}
-	
+
 	public void deleteForecast(Forecast forecast,String loggedUser) {
 		db.getTransaction().begin();
 		Account a =db.find(Account.class, loggedUser);
@@ -451,44 +468,44 @@ public class DataAccess  {
 		db.remove(f);		
 		db.getTransaction().commit();
 	}
-	
+
 	public void paid(String user, double win) {
 		db.getTransaction().begin();
 		Account u= db.find(Account.class, user);
 		u.paid(win);		
 		db.getTransaction().commit();
 	}
-	
+
 	public void restMoneyToUser(String pUserName, Double money) {
 		db.getTransaction().begin();
 		Account u= db.find(Account.class, pUserName);
 		u.rest(money);		
 		db.getTransaction().commit();
 	}
-	
+
 	public void closeEvent(Event e) {
 		db.getTransaction().begin();
 		Event evento= db.find(Event.class, e.getEventNumber());
 		db.remove(evento);
 		db.getTransaction().commit();
 	}
-	
-	
-	
+
+
+
 	public Account getUser(String pUserName) {
 		Account cuenta = db.find(Account.class, pUserName);
 		return cuenta;
 	}
-	
-	
+
+
 
 	public void storeForecast(Forecast pForecast) {
 		db.getTransaction().begin();
 		db.persist(pForecast);
 		db.getTransaction().commit();
 	}
-	
-	
+
+
 	public ArrayList<Forecast> retrieveForecast(Question pQuestion, String pUser) {
 		TypedQuery<Forecast> res = db.createQuery("SELECT f FROM Forecast f WHERE f.question.questionNumber="+pQuestion.getQuestionNumber()+" and f.user="+pUser+"", Forecast.class);
 		ArrayList<Forecast> fores = (ArrayList<Forecast>) res.getResultList();

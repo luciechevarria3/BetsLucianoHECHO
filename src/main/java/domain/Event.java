@@ -94,10 +94,8 @@ public class Event implements Serializable {
         return q;
 	}
 
-	
 	/**
 	 * This method checks if the question already exists for that event
-	 * 
 	 * @param question that needs to be checked if there exists
 	 * @return true if the question exists and false in other case
 	 */

@@ -21,7 +21,7 @@ import exceptions.QuestionAlreadyExist;
 @WebService(endpointInterface = "businessLogic.BLFacade")
 public class BLFacadeImplementation  implements BLFacade {
 	DataAccess dbManager;
-	private static String loggedUser = null;				// Si es null, no se esta loggeado. Si es no nulo, este campo
+	public static String loggedUser = null;				// Si es null, no se esta loggeado. Si es no nulo, este campo
 															// contiene el username del usuario loggeado. 
 
 	public BLFacadeImplementation()  {		
@@ -72,8 +72,10 @@ public class BLFacadeImplementation  implements BLFacade {
 		if(new Date().compareTo(event.getEventDate())>0)
 			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
 				
-		
-		 qry=dbManager.createQuestion(event,question,betMinimum, questionType, pMultipliers);		
+		if(event.DoesQuestionExists(question)) {
+			throw new QuestionAlreadyExist();
+		}
+		qry=dbManager.createQuestion(event,question,betMinimum, questionType, pMultipliers);		
 
 		dbManager.close();
 		
@@ -151,22 +153,32 @@ public class BLFacadeImplementation  implements BLFacade {
      * @return True if the user logged successfully else not
      */
     @WebMethod
-	public boolean tryToLogin(String pUsername, String pPassword) {
-    	if (loggedUser == null) {
-	    	dbManager.open(false);
-	    	if(dbManager.tryToLogin(pUsername, pPassword)) {
-	    		loggedUser = pUsername;
-	    		dbManager.close();
-	    		System.out.println("User " + pUsername + " has logged in successfully.");
-	    		return true;
-	    	} 
-	    	System.out.println("Unsuccessful loggin by " + pUsername + " user.");
-			dbManager.close();
-	    	return false;
+    public boolean tryToLogin(String pUsername, String pPassword) {
+    	if (loggedUser == null) {																/*1*/
+    		dbManager.open(false);																/*2*/
+    		try {
+    			if(dbManager.tryToLogin(pUsername, pPassword)) {								/*3*/
+    				loggedUser = pUsername;														/*4*/
+    				dbManager.close();															/*5*/
+    				System.out.println("User " + pUsername + " has logged in successfully.");	/*6*/
+    				return true;																/*7*/
+    			}
+    			else {
+    				System.out.println("Try again, please.");									/*8*/
+    				dbManager.close();															/*9*/
+    				return false;																/*10*/
+    			}
+    		}
+    		catch (RuntimeException e) {
+    			System.out.println(e.getMessage());												/*11*/
+    			dbManager.close();																/*12*/
+    			return false;																	/*13*/
+    		}
     	}
-    	System.out.println("Someone is already logged in. To log in with another account reboot the application.");
-    	return false;
-	}
+    	System.out.println("Someone is already logged in. To log in with another account reboot the application.");	/*14*/
+    	dbManager.close();																		/*15*/
+    	return false;																			/*16*/
+    }
     
     
     /**

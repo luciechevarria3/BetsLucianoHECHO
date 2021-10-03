@@ -47,9 +47,7 @@ public class Question implements Serializable {
 		this.event = event;
 		this.questionType = questionType;
 		addMultipliers(pMultipliers);
-		
 	}
-
 
 	/**
 	*	Adds multipliers to the multipliers ArrayList
