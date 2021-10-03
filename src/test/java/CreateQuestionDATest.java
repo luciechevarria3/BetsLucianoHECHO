@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import configuration.ConfigXML;
@@ -22,10 +23,15 @@ import utility.TestUtilityDataAccess;
 
 class CreateQuestionDATest {
 
-	static DataAccess sut = new DataAccess(ConfigXML.getInstance().getDataBaseOpenMode().equals("initialize"));;
+	static DataAccess sut;
 	static TestUtilityDataAccess testDA = new TestUtilityDataAccess();
 
 	private Event ev;
+	
+	@BeforeAll
+	public static void initializeDB() {
+		sut = new DataAccess(true);
+	}
 
 	@Test
 	// sut.createQuestion: The event has one question with a queryText.
@@ -36,7 +42,7 @@ class CreateQuestionDATest {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Date oneDate = sdf.parse("05/10/2022");
 			String eventText = "Event Text";
-			String queryText = "Query Text";
+			String queryText = "1.2, 1.3, 1.4";
 			Float betMinimum = 2f;
 
 			testDA.open();
@@ -65,15 +71,15 @@ class CreateQuestionDATest {
 
 			// configure the state of the system (create object in the dabatase)
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Date oneDate = sdf.parse("05/10/2022");
-			String eventText = "Event Text";
+			Date oneDate = sdf.parse("06/10/2022");
+			String eventText = "Event Text 2";
 			Float betMinimum = 2f;
 			
 			testDA.open();
 			ev = testDA.addEventWithQuestion(eventText, oneDate, "otra", 10.0f);
 			testDA.close();
 
-			String queryText = "Query Text";
+			String queryText = "1.2, 1.3, 1.4";
 			try {
 				// invoke System Under Test (sut)
 				Question q = sut.createQuestion(ev, queryText, betMinimum, 1, queryText);
@@ -114,7 +120,7 @@ class CreateQuestionDATest {
 
 			// configure the state of the system (create object in the dabatase)
 			Float betMinimum = 2f;
-			String queryText = "Query Text";
+			String queryText = "1.2, 1.3, 1.4";
 			try {
 				// invoke System Under Test (sut)
 				Question q= sut.createQuestion(null, queryText, betMinimum, 1, queryText);
@@ -189,7 +195,7 @@ class CreateQuestionDATest {
 			ev = testDA.addEventWithQuestion(eventText, oneDate, "otra", 0.0f);
 			testDA.close();
 
-			String queryText = "Query Text";
+			String queryText = "1.2, 1.3, 1.4";
 			try {
 				// invoke System Under Test (sut)
 				Question q = sut.createQuestion(ev, queryText, betMinimum, 1, queryText);

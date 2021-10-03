@@ -72,7 +72,7 @@ public class TestUtilityDataAccess {
 				db.getTransaction().begin();
 				try {
 				    ev=new Event(desc,d);
-				    ev.addQuestion(question,  qty, 1, "1.3,1.4");
+				    ev.addQuestion(question,  qty, 1, "1.3,1.4,1.5");
 					db.persist(ev);
 					db.getTransaction().commit();
 				}
