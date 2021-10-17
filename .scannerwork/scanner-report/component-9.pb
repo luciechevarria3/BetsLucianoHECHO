@@ -1,1 +1,0 @@
-	 2javaX«hr*src/main/java/configuration/ConfigXML.java

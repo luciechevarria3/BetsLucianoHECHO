@@ -1,2 +1,0 @@
-BetsLuciano :##+"%!
-$ &	RBetsLuciano

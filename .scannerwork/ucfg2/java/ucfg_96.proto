@@ -1,33 +1,21 @@
 
-WbusinessLogic.BLFacadeImplementation#getEventsMonth(Ljava/util/Date;)Ljava/util/Vector;{
-qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.javah  h(."startingBlock*€
-startingBlock{
-qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.javah. h(9»
-¸
-{
-qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.javah h(
-%0"
-__annotate*
-	WebMethod*
+domain.Forecast#won()Zf
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Forecast.javaI I("1*ë
+1f
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Forecast.javaJ	 J(«
+¨
+f
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Forecast.javaJ	 J(
+%0java.lang.String"__id* *
+domain.Forecast"	
+myGuessÝÚ
+f
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Forecast.javaJ	 J(-
+%1",java.lang.String#equals(Ljava/lang/Object;)Z*
 
-datejava.util.Date®
-«
-{
-qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.javah4 h(8
-datejava.util.Date"__annotation*
-
-%0*
-1*É
-1{
-qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.javai i(©
-¦
-{
-qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.javaj j(5
-datesjava.util.Vector"__id*
-"""š
-{
-qC:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/businessLogic/BLFacadeImplementation.javal l(
-
-datesjava.util.Vector:
-datejava.util.DateB(&
-$businessLogic.BLFacadeImplementation
+%0java.lang.String*
+""2equals(Ljava/lang/Object;)"p
+f
+\C:/Users/Luciano Echevarria/eclipse-workspace/Bets_Grupo7/src/main/java/domain/Forecast.javaJ J(.
+""B
+domain.Forecast
