@@ -11,7 +11,7 @@ import dataAccess.DataAccessEchevarria2;
  * @author Luciano Echevarria
  * @version 02/10/2021
  */
-//Comentario
+//Comentario2
 class TryToLoginDAEchevarria2Test {
 	// System under test
 	private static DataAccessEchevarria2 sut;
