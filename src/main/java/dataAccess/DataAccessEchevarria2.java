@@ -33,7 +33,7 @@ import exceptions.QuestionAlreadyExist;
 /**
  * It implements the data access to the objectDb database
  */
-public class DataAccess  {
+public class DataAccessEchevarria2  {
 	protected static EntityManager  db;
 	protected static EntityManagerFactory emf;
 	private String errorListaNula = "Error. Lista de preguntas nula";
@@ -41,7 +41,7 @@ public class DataAccess  {
 
 	ConfigXML c=ConfigXML.getInstance();
 
-	public DataAccess(boolean initializeMode)  {
+	public DataAccessEchevarria2(boolean initializeMode)  {
 
 		System.out.println("Creating DataAccess instance => isDatabaseLocal: "+c.isDatabaseLocal()+" getDatabBaseOpenMode: "+c.getDataBaseOpenMode());
 
@@ -67,7 +67,7 @@ public class DataAccess  {
 	}
 
 
-	public DataAccess()  {	
+	public DataAccessEchevarria2()  {	
 		this(false);
 	}
 
@@ -187,74 +187,74 @@ public class DataAccess  {
 		}
 	}
 
-	/**
-	 * This method creates a question for an event, with a question text and the minimum bet
-	 * 
-	 * @param event to which question is added
-	 * @param question text of the question
-	 * @param betMinimum minimum quantity of the bet
-	 * @return the created question, or null, or an exception
-	 * @throws QuestionAlreadyExist if the same question already exists for the event
-	 */
-	public Question createQuestion(Event event, String question, float betMinimum, int questionType,String pMultipliers) throws  QuestionAlreadyExist {
-		System.out.println(">> DataAccess: createQuestion=> event= "+event+" question= "+question+" betMinimum="+betMinimum);
-
-		Event ev = db.find(Event.class, event.getEventNumber());
-
-		if (ev.DoesQuestionExists(question)) throw new QuestionAlreadyExist(ResourceBundle.getBundle("Etiquetas").getString("ErrorQueryAlreadyExist"));
-
-		db.getTransaction().begin();
-		Question q = ev.addQuestion(question, betMinimum, questionType, pMultipliers);
-		//db.persist(q);
-		db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added in questions property of Event class
-		// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-		db.getTransaction().commit();
-		return q;
-	}
-
-	/**
-	 * This method retrieves from the database the events of a given date 
-	 * 
-	 * @param date in which events are retrieved
-	 * @return collection of events
-	 */
-	public Vector<Event> getEvents(Date date) {
-		System.out.println(">> DataAccess: getEvents");
-		Vector<Event> res = new Vector<Event>();	
-		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate=?1",Event.class);   
-		query.setParameter(1, date);
-		List<Event> events = query.getResultList();
-		for (Event ev:events){
-			System.out.println(ev.toString());		 
-			res.add(ev);
-		}
-		return res;
-	}
-
-	/**
-	 * This method retrieves from the database the dates a month for which there are events
-	 * 
-	 * @param date of the month for which days with events want to be retrieved 
-	 * @return collection of dates
-	 */
-	public Vector<Date> getEventsMonth(Date date) {
-		System.out.println(">> DataAccess: getEventsMonth");
-		Vector<Date> res = new Vector<Date>();	
-
-		Date firstDayMonthDate= UtilDate.firstDayMonth(date);
-		Date lastDayMonthDate= UtilDate.lastDayMonth(date);
-
-
-		TypedQuery<Date> query = db.createQuery("SELECT DISTINCT ev.eventDate FROM Event ev WHERE ev.eventDate BETWEEN ?1 and ?2",Date.class);   
-		query.setParameter(1, firstDayMonthDate);
-		query.setParameter(2, lastDayMonthDate);
-		List<Date> dates = query.getResultList();
-		for (Date d:dates){
-			System.out.println(d.toString());		 
-			res.add(d);
-		}
-		return res;
-	}
+//	/**
+//	 * This method creates a question for an event, with a question text and the minimum bet
+//	 * 
+//	 * @param event to which question is added
+//	 * @param question text of the question
+//	 * @param betMinimum minimum quantity of the bet
+//	 * @return the created question, or null, or an exception
+//	 * @throws QuestionAlreadyExist if the same question already exists for the event
+//	 */
+//	public Question createQuestion(Event event, String question, float betMinimum, int questionType,String pMultipliers) throws  QuestionAlreadyExist {
+//		System.out.println(">> DataAccess: createQuestion=> event= "+event+" question= "+question+" betMinimum="+betMinimum);
+//
+//		Event ev = db.find(Event.class, event.getEventNumber());
+//
+//		if (ev.DoesQuestionExists(question)) throw new QuestionAlreadyExist(ResourceBundle.getBundle("Etiquetas").getString("ErrorQueryAlreadyExist"));
+//
+//		db.getTransaction().begin();
+//		Question q = ev.addQuestion(question, betMinimum, questionType, pMultipliers);
+//		//db.persist(q);
+//		db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added in questions property of Event class
+//		// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+//		db.getTransaction().commit();
+//		return q;
+//	}
+//
+//	/**
+//	 * This method retrieves from the database the events of a given date 
+//	 * 
+//	 * @param date in which events are retrieved
+//	 * @return collection of events
+//	 */
+//	public Vector<Event> getEvents(Date date) {
+//		System.out.println(">> DataAccess: getEvents");
+//		Vector<Event> res = new Vector<Event>();	
+//		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate=?1",Event.class);   
+//		query.setParameter(1, date);
+//		List<Event> events = query.getResultList();
+//		for (Event ev:events){
+//			System.out.println(ev.toString());		 
+//			res.add(ev);
+//		}
+//		return res;
+//	}
+//
+//	/**
+//	 * This method retrieves from the database the dates a month for which there are events
+//	 * 
+//	 * @param date of the month for which days with events want to be retrieved 
+//	 * @return collection of dates
+//	 */
+//	public Vector<Date> getEventsMonth(Date date) {
+//		System.out.println(">> DataAccess: getEventsMonth");
+//		Vector<Date> res = new Vector<Date>();	
+//
+//		Date firstDayMonthDate= UtilDate.firstDayMonth(date);
+//		Date lastDayMonthDate= UtilDate.lastDayMonth(date);
+//
+//
+//		TypedQuery<Date> query = db.createQuery("SELECT DISTINCT ev.eventDate FROM Event ev WHERE ev.eventDate BETWEEN ?1 and ?2",Date.class);   
+//		query.setParameter(1, firstDayMonthDate);
+//		query.setParameter(2, lastDayMonthDate);
+//		List<Date> dates = query.getResultList();
+//		for (Date d:dates){
+//			System.out.println(d.toString());		 
+//			res.add(d);
+//		}
+//		return res;
+//	}
 
 
 	public void open(boolean initializeMode) {
@@ -279,62 +279,63 @@ public class DataAccess  {
 
 			db = emf.createEntityManager();
 		}
-
 	}
-	public boolean existQuestion(Event event, String question) {
-		System.out.println(">> DataAccess: existQuestion=> event= "+event+" question= "+question);
-		Event ev = db.find(Event.class, event.getEventNumber());
-		return ev.DoesQuestionExists(question);
 
-	}
+//	}
+//	public boolean existQuestion(Event event, String question) {
+//		System.out.println(">> DataAccess: existQuestion=> event= "+event+" question= "+question);
+//		Event ev = db.find(Event.class, event.getEventNumber());
+//		return ev.DoesQuestionExists(question);
+//
+//	}
 	public void close(){
 		if (db.isOpen())
 			db.close();
 
 		System.out.println("DataBase closed");
 	}
-
-	public void storeAccount(Account user) {
-		db.getTransaction().begin();
-		db.persist(user);
-		db.getTransaction().commit();
-	}
-
-	public boolean isUsernameAvailable(Account acc) {
-
-		Account cuenta = db.find(Account.class, acc.getUserName());
-
-
-		if (cuenta != null) {
-			System.out.println("*** " + acc.getUserName() + " *** username is already taken. Code 4.");
-			return false;
-		}else if(!isEmailAvailable(acc.getUserEmail())) {
-			System.out.println("*** " + acc.getUserEmail() + " *** email is already taken. Code 4.");
-			return false;
-		}else {
-			System.out.println("There are no account(s) with that username.");
-			System.out.println("*** " + acc.getUserName() + " *** username is available.");
-			return true;
-
-		}
-
-	}
-
-	public boolean isEmailAvailable(String pCorreo) {
-		ArrayList<Account>acc=(ArrayList<Account>) getAllUsers();
-		for(Account a:acc) {
-			if(a.getUserEmail().equals(pCorreo)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	public List<Account> getAllUsers() {
-		TypedQuery<Account> query = db.createQuery("SELECT a FROM Account a",Account.class);
-		List<Account> accounts = query.getResultList();
-		return accounts;
-	}
+//
+//	public void storeAccount(Account user) {
+//		db.getTransaction().begin();
+//		db.persist(user);
+//		db.getTransaction().commit();
+//	}
+//
+//	public boolean isUsernameAvailable(Account acc) {
+//
+//		Account cuenta = db.find(Account.class, acc.getUserName());
+//
+//
+//		if (cuenta != null) {
+//			System.out.println("*** " + acc.getUserName() + " *** username is already taken. Code 4.");
+//			return false;
+//		}else if(!isEmailAvailable(acc.getUserEmail())) {
+//			System.out.println("*** " + acc.getUserEmail() + " *** email is already taken. Code 4.");
+//			return false;
+//		}else {
+//			System.out.println("There are no account(s) with that username.");
+//			System.out.println("*** " + acc.getUserName() + " *** username is available.");
+//			return true;
+//
+//		}
+//
+//	}
+//
+//	public boolean isEmailAvailable(String pCorreo) {
+//		ArrayList<Account>acc=(ArrayList<Account>) getAllUsers();
+//		for(Account a:acc) {
+//			if(a.getUserEmail().equals(pCorreo)) {
+//				return false;
+//			}
+//		}
+//		return true;
+//	}
+//
+//	public List<Account> getAllUsers() {
+//		TypedQuery<Account> query = db.createQuery("SELECT a FROM Account a",Account.class);
+//		List<Account> accounts = query.getResultList();
+//		return accounts;
+//	}
 
 	/**
 	 * Method to try to login to the application. 
@@ -362,160 +363,160 @@ public class DataAccess  {
 			}
 		}
 	}
-
-	public boolean isAdministrator(String pUsername) {
-		Account obj = db.find(Account.class, pUsername); 
-		if (obj == null) {
-			return false;
-		} else {
-			if (obj.getAdmin()) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public List<Event> LastEventNumber() {
-		TypedQuery<Event> query = db.createQuery("SELECT e FROM Event e",Event.class);
-		List<Event> events = query.getResultList();
-		return events;
-	}
-
-	public void storeEvent(Event evento) {
-		db.getTransaction().begin();
-		db.persist(evento);
-		db.getTransaction().commit();
-	}
-
-	public Question getQuestionFromNumber(Integer numero) {
-		TypedQuery<Question> query = db.createQuery("SELECT p FROM Question p WHERE p.questionNumber= "+numero+"", Question.class);
-		List<Question> questions = query.getResultList();
-		if(questions.size()<1) {
-			System.out.println(errorListaNula);
-			return null;
-		}
-		else {
-			return questions.get(0);
-		}
-
-	}
-
-	public List<Forecast> getAllForecasts() {
-		TypedQuery<Forecast> query = db.createQuery("SELECT f FROM Forecast f",Forecast.class);
-		List<Forecast> forecasts = query.getResultList();
-		return forecasts;
-	}
-
-
-	public List<Forecast> getuserForecasts(String user) {
-
-		Account u =getUser(user);
-
-		List<Forecast> forecasts = u.getAllUserForecast();
-
-		if(forecasts.size()<1) {
-			System.out.println(errorListaNula);
-			return null;
-		}
-		else {
-			return forecasts;
-		}			
-
-	}
-
-
-
-	public List<Forecast> getForecastsOfQuestion(Question question) {
-
-		ArrayList<Forecast> forecasts = (ArrayList<Forecast>) getAllForecasts();
-		List<Forecast> forecastsOfQuestion=new ArrayList<Forecast>();
-
-		if(forecasts.size()<1) {
-			System.out.println(errorListaNula);
-			return null;
-		}
-		else {
-			for(Forecast f:forecasts) {
-				if(f.getQuestion().getQuestionNumber()==question.getQuestionNumber()) {
-					forecastsOfQuestion.add(f);
-				}
-			}			
-			return forecastsOfQuestion;
-		}
-
-	}
-
-	public ArrayList<Float> getQuestionMultiplersFromNumber(Integer numero) {
-		TypedQuery<Question> query = db.createQuery("SELECT p FROM Question p WHERE p.questionNumber= "+numero+"", Question.class);
-		List<Question> questions = query.getResultList();
-		if(questions.size()<1) {
-			System.out.println(errorListaNula);
-			return null;
-		}
-		else {
-			ArrayList<Float> f=questions.get(0).getMultipliers();
-			for(@SuppressWarnings("unused") Float asd:f) {
-			}
-			return f;
-		}
-	}
-
-	public void setQuestionResult(Integer numero, String result) {
-		db.getTransaction().begin();
-		Question q= db.find(Question.class, numero);
-		q.setResult(result);		
-		db.getTransaction().commit();
-	}
-
-	public void deleteForecast(Forecast forecast,String loggedUser) {
-		db.getTransaction().begin();
-		Account a =db.find(Account.class, loggedUser);
-		Forecast f= db.find(Forecast.class, forecast.getForecastNumber());
-		a.deletIndexForecast(f);
-		db.remove(f);		
-		db.getTransaction().commit();
-	}
-
-	public void paid(String user, double win) {
-		db.getTransaction().begin();
-		Account u= db.find(Account.class, user);
-		u.paid(win);		
-		db.getTransaction().commit();
-	}
-
-	public void restMoneyToUser(String pUserName, Double money) {
-		db.getTransaction().begin();
-		Account u= db.find(Account.class, pUserName);
-		u.rest(money);		
-		db.getTransaction().commit();
-	}
-
-	public void closeEvent(Event e) {
-		db.getTransaction().begin();
-		Event evento= db.find(Event.class, e.getEventNumber());
-		db.remove(evento);
-		db.getTransaction().commit();
-	}
-
-
-
-	public Account getUser(String pUserName) {
-		Account cuenta = db.find(Account.class, pUserName);
-		return cuenta;
-	}
-
-
-
-	public void storeForecast(Forecast pForecast) {
-		db.getTransaction().begin();
-		db.persist(pForecast);
-		db.getTransaction().commit();
-	}
-
-
-	public ArrayList<Forecast> retrieveForecast(Question pQuestion, String pUser) {
-		TypedQuery<Forecast> res = db.createQuery("SELECT f FROM Forecast f WHERE f.question.questionNumber="+pQuestion.getQuestionNumber()+" and f.user="+pUser+"", Forecast.class);
-		ArrayList<Forecast> fores = (ArrayList<Forecast>) res.getResultList();
-		return fores;
-	}
+//
+//	public boolean isAdministrator(String pUsername) {
+//		Account obj = db.find(Account.class, pUsername); 
+//		if (obj == null) {
+//			return false;
+//		} else {
+//			if (obj.getAdmin()) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+//
+//	public List<Event> LastEventNumber() {
+//		TypedQuery<Event> query = db.createQuery("SELECT e FROM Event e",Event.class);
+//		List<Event> events = query.getResultList();
+//		return events;
+//	}
+//
+//	public void storeEvent(Event evento) {
+//		db.getTransaction().begin();
+//		db.persist(evento);
+//		db.getTransaction().commit();
+//	}
+//
+//	public Question getQuestionFromNumber(Integer numero) {
+//		TypedQuery<Question> query = db.createQuery("SELECT p FROM Question p WHERE p.questionNumber= "+numero+"", Question.class);
+//		List<Question> questions = query.getResultList();
+//		if(questions.size()<1) {
+//			System.out.println(errorListaNula);
+//			return null;
+//		}
+//		else {
+//			return questions.get(0);
+//		}
+//
+//	}
+//
+//	public List<Forecast> getAllForecasts() {
+//		TypedQuery<Forecast> query = db.createQuery("SELECT f FROM Forecast f",Forecast.class);
+//		List<Forecast> forecasts = query.getResultList();
+//		return forecasts;
+//	}
+//
+//
+//	public List<Forecast> getuserForecasts(String user) {
+//
+//		Account u =getUser(user);
+//
+//		List<Forecast> forecasts = u.getAllUserForecast();
+//
+//		if(forecasts.size()<1) {
+//			System.out.println(errorListaNula);
+//			return null;
+//		}
+//		else {
+//			return forecasts;
+//		}			
+//
+//	}
+//
+//
+//
+//	public List<Forecast> getForecastsOfQuestion(Question question) {
+//
+//		ArrayList<Forecast> forecasts = (ArrayList<Forecast>) getAllForecasts();
+//		List<Forecast> forecastsOfQuestion=new ArrayList<Forecast>();
+//
+//		if(forecasts.size()<1) {
+//			System.out.println(errorListaNula);
+//			return null;
+//		}
+//		else {
+//			for(Forecast f:forecasts) {
+//				if(f.getQuestion().getQuestionNumber()==question.getQuestionNumber()) {
+//					forecastsOfQuestion.add(f);
+//				}
+//			}			
+//			return forecastsOfQuestion;
+//		}
+//
+//	}
+//
+//	public ArrayList<Float> getQuestionMultiplersFromNumber(Integer numero) {
+//		TypedQuery<Question> query = db.createQuery("SELECT p FROM Question p WHERE p.questionNumber= "+numero+"", Question.class);
+//		List<Question> questions = query.getResultList();
+//		if(questions.size()<1) {
+//			System.out.println(errorListaNula);
+//			return null;
+//		}
+//		else {
+//			ArrayList<Float> f=questions.get(0).getMultipliers();
+//			for(@SuppressWarnings("unused") Float asd:f) {
+//			}
+//			return f;
+//		}
+//	}
+//
+//	public void setQuestionResult(Integer numero, String result) {
+//		db.getTransaction().begin();
+//		Question q= db.find(Question.class, numero);
+//		q.setResult(result);		
+//		db.getTransaction().commit();
+//	}
+//
+//	public void deleteForecast(Forecast forecast,String loggedUser) {
+//		db.getTransaction().begin();
+//		Account a =db.find(Account.class, loggedUser);
+//		Forecast f= db.find(Forecast.class, forecast.getForecastNumber());
+//		a.deletIndexForecast(f);
+//		db.remove(f);		
+//		db.getTransaction().commit();
+//	}
+//
+//	public void paid(String user, double win) {
+//		db.getTransaction().begin();
+//		Account u= db.find(Account.class, user);
+//		u.paid(win);		
+//		db.getTransaction().commit();
+//	}
+//
+//	public void restMoneyToUser(String pUserName, Double money) {
+//		db.getTransaction().begin();
+//		Account u= db.find(Account.class, pUserName);
+//		u.rest(money);		
+//		db.getTransaction().commit();
+//	}
+//
+//	public void closeEvent(Event e) {
+//		db.getTransaction().begin();
+//		Event evento= db.find(Event.class, e.getEventNumber());
+//		db.remove(evento);
+//		db.getTransaction().commit();
+//	}
+//
+//
+//
+//	public Account getUser(String pUserName) {
+//		Account cuenta = db.find(Account.class, pUserName);
+//		return cuenta;
+//	}
+//
+//
+//
+//	public void storeForecast(Forecast pForecast) {
+//		db.getTransaction().begin();
+//		db.persist(pForecast);
+//		db.getTransaction().commit();
+//	}
+//
+//
+//	public ArrayList<Forecast> retrieveForecast(Question pQuestion, String pUser) {
+//		TypedQuery<Forecast> res = db.createQuery("SELECT f FROM Forecast f WHERE f.question.questionNumber="+pQuestion.getQuestionNumber()+" and f.user="+pUser+"", Forecast.class);
+//		ArrayList<Forecast> fores = (ArrayList<Forecast>) res.getResultList();
+//		return fores;
+//	}
 }
