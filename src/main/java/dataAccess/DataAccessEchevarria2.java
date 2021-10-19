@@ -49,21 +49,21 @@ public class DataAccessEchevarria2  {
 		open(initializeMode);
 
 //		// CAMBIO PARA QUE FUNCIONEN LOS TESTS SOBRE DATAACCESS
-//		if(initializeMode) {
-//			db.getTransaction().begin();
-//			try {
-//				Account user1 = new Account("Samu11", "123456X", false, "bla", "bla", "bla", "bla");
-//				db.persist(user1);
-//				Account user2 = new Account("Ane20", "202020", false, "bla", "bla", "bla", "bla");
-//				db.persist(user2);
-//				System.out.println("Se han creado dos nuevos usuarios");
-//				db.getTransaction().commit();
-//				System.out.println("Db initialized");
-//			}
-//			catch (Exception e){
-//				e.printStackTrace();
-//			}
-//		}
+		if(initializeMode) {
+			db.getTransaction().begin();
+			try {
+				Account user1 = new Account("Samu11", "123456X", false, "bla", "bla", "bla", "bla");
+				db.persist(user1);
+				Account user2 = new Account("Ane20", "202020", false, "bla", "bla", "bla", "bla");
+				db.persist(user2);
+				System.out.println("Se han creado dos nuevos usuarios");
+				db.getTransaction().commit();
+				System.out.println("Db initialized");
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+		}
 		// HASTA AQUI JEJEJ
 	}
 
