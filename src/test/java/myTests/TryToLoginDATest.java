@@ -29,6 +29,7 @@ class TryToLoginDATest {
 		// Preparing variables
 		String username = "Samu11";
 		String password = "123456X";
+		System.out.println("Test1: ");
 		assertTrue(sut.tryToLogin(username, password));
 	}
 	
@@ -41,6 +42,7 @@ class TryToLoginDATest {
 		// Preparing variables
 		String username = "";
 		String password = "";
+		System.out.println("Test2: ");
 		assertThrows(RuntimeException.class, () -> sut.tryToLogin(username, password));
 	}
 	
@@ -53,6 +55,7 @@ class TryToLoginDATest {
 		// Preparing variables
 		String username = "";
 		String password = "257785";
+		System.out.println("Test3: ");
 		assertThrows(RuntimeException.class, () -> sut.tryToLogin(username, password));
 	}
 	
@@ -65,6 +68,7 @@ class TryToLoginDATest {
 		// Preparing variables
 		String username = "Julio10";
 		String password = "";
+		System.out.println("Test4: ");
 		assertThrows(RuntimeException.class, () -> sut.tryToLogin(username, password));
 	}
 	

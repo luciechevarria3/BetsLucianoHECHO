@@ -64,7 +64,6 @@ public class DataAccessEchevarria2  {
 				e.printStackTrace();
 			}
 		}
-		// HASTA AQUI JEJEJ
 	}
 
 
@@ -79,9 +78,13 @@ public class DataAccessEchevarria2  {
 	public void initializeDB(){
 		db.getTransaction().begin();
 		try {
-//			Account user = new Account("Samu11", "123456X", false, "bla", "bla", "bla", "bla");
-//			db.persist(user);
-//			System.out.println("Se ha creado un nuevo usuario");
+			Account user1 = new Account("Samu11", "123456X", false, "bla", "bla", "bla", "bla");
+			db.persist(user1);
+			Account user2 = new Account("Ane20", "202020", false, "bla", "bla", "bla", "bla");
+			db.persist(user2);
+			System.out.println("Se han creado dos nuevos usuarios");
+			db.getTransaction().commit();
+			System.out.println("Db initialized");
 			//			Calendar today = Calendar.getInstance();
 			//
 			//			int month=today.get(Calendar.MONTH);
@@ -180,8 +183,8 @@ public class DataAccessEchevarria2  {
 			//			db.persist(ev19);
 			//			db.persist(ev20);
 
-			db.getTransaction().commit();
-			System.out.println("Db initialized");
+//			db.getTransaction().commit();
+//			System.out.println("Db initialized");
 		}
 		catch (Exception e){
 			e.printStackTrace();
@@ -355,7 +358,7 @@ public class DataAccessEchevarria2  {
 			return false;																	/*6*/
 		}
 		else {
-			if (obj.getPassword().equals(pPassword)) {										/*7*/
+			if (obj.getPassword().equals(pPassword)) {	// Se hace login correctamente									/*7*/
 				return true;																/*8*/
 			}
 			else {

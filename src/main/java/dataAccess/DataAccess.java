@@ -47,23 +47,22 @@ public class DataAccess  {
 
 		open(initializeMode);
 
-//		// CAMBIO PARA QUE FUNCIONEN LOS TESTS SOBRE DATAACCESS
-//		if(initializeMode) {
-//			db.getTransaction().begin();
-//			try {
-//				Account user1 = new Account("Samu11", "123456X", false, "bla", "bla", "bla", "bla");
-//				db.persist(user1);
-//				Account user2 = new Account("Ane20", "202020", false, "bla", "bla", "bla", "bla");
-//				db.persist(user2);
-//				System.out.println("Se han creado dos nuevos usuarios");
-//				db.getTransaction().commit();
-//				System.out.println("Db initialized");
-//			}
-//			catch (Exception e){
-//				e.printStackTrace();
-//			}
-//		}
-		// HASTA AQUI JEJEJ
+//		CAMBIO PARA QUE FUNCIONEN LOS TESTS SOBRE DATAACCESS
+		if(initializeMode) {
+			db.getTransaction().begin();
+			try {
+				Account user1 = new Account("Samu11", "123456X", false, "bla", "bla", "bla", "bla");
+				db.persist(user1);
+				Account user2 = new Account("Ane20", "202020", false, "bla", "bla", "bla", "bla");
+				db.persist(user2);
+				System.out.println("Se han creado dos nuevos usuarios");
+				db.getTransaction().commit();
+				System.out.println("Db initialized");
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 
@@ -78,8 +77,8 @@ public class DataAccess  {
 	public void initializeDB(){
 		db.getTransaction().begin();
 		try {
-//			Account user = new Account("Samu11", "123456X", false, "bla", "bla", "bla", "bla");
-//			db.persist(user);
+			Account user = new Account("Samu11", "123456X", false, "bla", "bla", "bla", "bla");
+			db.persist(user);
 //			System.out.println("Se ha creado un nuevo usuario");
 			//			Calendar today = Calendar.getInstance();
 			//

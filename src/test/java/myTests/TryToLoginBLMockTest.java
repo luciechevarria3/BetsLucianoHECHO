@@ -17,7 +17,7 @@ import dataAccess.DataAccess;
 class TryToLoginBLMockTest {
 
 	private DataAccess mockDA = Mockito.mock(DataAccess.class);
-	private BLFacadeImplementation sut = new BLFacadeImplementation();
+	private BLFacadeImplementation sut = new BLFacadeImplementation(mockDA);
 	
 	/**
 	 * Test1: loggedUser is not null. Should throw exception.
@@ -28,11 +28,11 @@ class TryToLoginBLMockTest {
 		BLFacadeImplementation.loggedUser = "prueba";
 		String username = "Samu11";
 		String password = "123456X";
-		Mockito.doReturn(true).when(mockDA).tryToLogin(username, password);
+		//Mockito.doReturn(true).when(mockDA).tryToLogin(username, password);
 		boolean result = sut.tryToLogin(username, password);
-		Mockito.verify(mockDA, Mockito.times(1)).open(false);
-		Mockito.verify(mockDA, Mockito.times(1)).close();
-		assertTrue(result);
+		//Mockito.verify(mockDA, Mockito.times(1)).open(false);
+		Mockito.verify(mockDA, Mockito.times(2)).close();
+		assertFalse(result);
 	}
 	
 	/**
@@ -47,7 +47,7 @@ class TryToLoginBLMockTest {
 		Mockito.doThrow(RuntimeException.class).when(mockDA).tryToLogin(username, password);
 		boolean result = sut.tryToLogin(username, password);
 		Mockito.verify(mockDA, Mockito.times(1)).open(false);
-		Mockito.verify(mockDA, Mockito.times(1)).close();
+		Mockito.verify(mockDA, Mockito.times(2)).close();
 		assertFalse(result);
 	}
 	
@@ -63,7 +63,7 @@ class TryToLoginBLMockTest {
 		Mockito.doThrow(RuntimeException.class).when(mockDA).tryToLogin(username, password);
 		boolean result = sut.tryToLogin(username, password);
 		Mockito.verify(mockDA, Mockito.times(1)).open(false);
-		Mockito.verify(mockDA, Mockito.times(1)).close();
+		Mockito.verify(mockDA, Mockito.times(2)).close();
 		assertFalse(result);
 	}
 	
@@ -79,7 +79,7 @@ class TryToLoginBLMockTest {
 		Mockito.doThrow(RuntimeException.class).when(mockDA).tryToLogin(username, password);
 		boolean result = sut.tryToLogin(username, password);
 		Mockito.verify(mockDA, Mockito.times(1)).open(false);
-		Mockito.verify(mockDA, Mockito.times(1)).close();
+		Mockito.verify(mockDA, Mockito.times(2)).close();
 		assertFalse(result);
 	}
 	
@@ -95,7 +95,7 @@ class TryToLoginBLMockTest {
 		Mockito.doReturn(false).when(mockDA).tryToLogin(username, password);
 		boolean result = sut.tryToLogin(username, password);
 		Mockito.verify(mockDA, Mockito.times(1)).open(false);
-		Mockito.verify(mockDA, Mockito.times(1)).close();
+		Mockito.verify(mockDA, Mockito.times(2)).close();
 		assertFalse(result);
 	}
 	
@@ -111,7 +111,24 @@ class TryToLoginBLMockTest {
 		Mockito.doReturn(false).when(mockDA).tryToLogin(username, password);
 		boolean result = sut.tryToLogin(username, password);
 		Mockito.verify(mockDA, Mockito.times(1)).open(false);
-		Mockito.verify(mockDA, Mockito.times(1)).close();
+		Mockito.verify(mockDA, Mockito.times(2)).close();
 		assertFalse(result);
+	}
+	
+	/**
+	 * Test7: Successful login
+	 */
+	@Test
+	@DisplayName("Test 7: Successful login ")
+	void test7SuccessfulLogin() {
+		// Preparing variables
+		BLFacadeImplementation.loggedUser = null;
+		String username = "Ane20";
+		String password = "202020";
+		Mockito.doReturn(true).when(mockDA).tryToLogin(username, password);
+		boolean result = sut.tryToLogin(username, password);
+		Mockito.verify(mockDA, Mockito.times(1)).open(false);
+		Mockito.verify(mockDA, Mockito.times(2)).close();
+		assertTrue(result);
 	}
 }

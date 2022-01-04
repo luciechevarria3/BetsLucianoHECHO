@@ -178,9 +178,11 @@ public class BLFacadeImplementation  implements BLFacade {
     			return false;																	/*13*/
     		}
     	}
-    	System.out.println("Someone is already logged in. To log in with another account reboot the application.");	/*14*/
-    	dbManager.close();																		/*15*/
-    	return false;																			/*16*/
+    	else {
+    		System.out.println("Someone is already logged in. To log in with another account reboot the application.");	/*14*/
+    		dbManager.close();																		/*15*/
+    		return false;																			/*16*/    		
+    	}
     }
     
     
